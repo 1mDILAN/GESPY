@@ -15,16 +15,32 @@
                         <div class="col-md-10">
                             <input type="text" id="name" name="name" class="form-control" required>
                         </div>
-                        <label for="location" class="col-md-2 col-form-label">Location:</label>
+                        <label for="surname" class="col-md-2 col-form-label">Surname:</label>
                         <div class="col-md-10">
-                            <input type="text" id="location" name="location" class="form-control" required>
+                            <input type="text" id="surname" name="surname" class="form-control" required>
                         </div>
-                        <label for="phone_number" class="col-md-2 col-form-label">Phone Number:</label>
+                        <label for="phone" class="col-md-2 col-form-label">Phone:</label>
                         <div class="col-md-10">
-                            <input type="text" id="phone_number" name="phone_number" class="form-control" required>
+                            <input type="text" id="phone" name="phone" class="form-control" required>
+                        </div>
+                        <label for="team_name" class="col-md-2 col-form-label">Team:</label>
+                        <div class="col-md-10">
+                            <select id="team_name" name="team_name" class="form-select" required>
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->name }}">{{ $team->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <label for="project_name" class="col-md-2 col-form-label">Project:</label>
+                        <div class="col-md-10">
+                            <select id="project_name" name="project_name" class="form-select" required>
+                                @foreach($projects as $project)
+                                    <option value="{{ $project->name }}">{{ $project->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-outline-primary w-full">Create Department</button>
+                            <button type="submit" class="btn btn-outline-primary w-full">Create Client</button>
                         </div>
                     </form>
                 </div>

@@ -4,17 +4,19 @@
     <input type="text" id="name" name="name" required><br><br>
     <label for="surname">Surname:</label>
     <input type="text" id="surname" name="surname" required><br><br>
-    <label for="position">Position:</label>
-    <input type="text" id="position" name="position" required><br><br>
-    <label for="department_id">Department:</label>
-    <select id="department_id" name="department_id" required>
-        @foreach($clients as $client)
-            <option value="{{ $department->id }}">{{ $department->name }}</option>
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required><br><br>
+    <label for="team_name">Team:</label>
+    <select id="team_name" name="team_name" required>
+        @foreach($teams as $team)
+            <option value="{{ $team->name }}">{{ $team->name }}</option>
         @endforeach
     </select><br><br>
-    <label for="hiring_date">Hiring Date:</label>
-    <input type="date" id="hiring_date" name="hiring_date" required><br><br>
-    <label for="salary">Salary:</label>
-    <input type="number" id="salary" name="salary" step="0.01" required><br><br>
-    <button type="submit">Create Employee</button>
+    <label for="project_name">Project:</label>
+    <select id="project_name" name="project_name" required>
+        @foreach($projects as $project)
+            <option value="{{ $project->name }}">{{ $project->name }}</option>
+        @endforeach
+    </select><br><br>
+    <button type="submit">Create Client</button>
 </form>

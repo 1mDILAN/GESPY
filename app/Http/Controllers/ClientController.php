@@ -12,7 +12,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients = Client::all();
+        return view('clients.index', ['clients' => $clients]);
     }
 
     /**
@@ -20,7 +21,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        return view('clients.create', ['clients' => $clients]);
     }
 
     /**
@@ -28,7 +30,17 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client();
+        $client->name = $request->input('name');
+        $client->surname = $request->input('surname');
+        $client->position = $request->input('position');
+        $client->client_id = $request->input('client_id');
+        $client->hiring_date = $request->input('hiring_date');
+        $client->salary = $request->input('salary');
+
+        $client->save();
+
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -36,7 +48,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('clients.show', ['client' => $client]);
     }
 
     /**
@@ -44,7 +56,8 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $clients = Client::all();
+        return view('clients.edit', ['client' => $client, 'clients' => $clients]);
     }
 
     /**
@@ -52,7 +65,10 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $client->fill($request->only(['name', 'surname', 'phone', 'team_name', 'project_name']));
+        $client->save();
+
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -60,6 +76,12 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        try {
+            $client->delete();
+            return redirect()->route('clients.index')->with('success', 'Client deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('clients.index')->with('error', 'Cannot delete client, it is related to attendances.');
+        }
+        return redirect()->route('clients.index')->with('status', 'Client deleted successfully');
     }
 }

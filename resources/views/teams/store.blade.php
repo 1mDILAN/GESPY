@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('clients.store') }}">
+<form method="POST" action="{{ route('employees.store') }}">
     @csrf
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required><br><br>
@@ -8,7 +8,7 @@
     <input type="text" id="position" name="position" required><br><br>
     <label for="department_id">Department:</label>
     <select id="department_id" name="department_id" required>
-        @foreach($clients as $client)
+        @foreach($departments as $department)
             <option value="{{ $department->id }}">{{ $department->name }}</option>
         @endforeach
     </select><br><br>

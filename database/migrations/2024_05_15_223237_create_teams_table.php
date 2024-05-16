@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->foreignId('leader_id')->constrained('persons');
+            $table->foreignId('dev0_id')->constrained('persons');
+            $table->foreignId('dev1_id')->constrained('persons');
+            $table->foreignId('dev2_id')->constrained('persons');
+            $table->foreignId('project_id')->constrained('projects');
+            // $table->timestamps();
         });
     }
 
